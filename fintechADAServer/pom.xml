@@ -9,11 +9,9 @@
         <version>1.0.0</version>
     </parent>
     
-	<groupId>tech.ada</groupId>
 	<artifactId>fintechADAServer</artifactId>
-	<version>1.0.0</version>
 	<name>fintechADAServer</name>
-	<description>Cadastro de pessoas da Fintech ADA</description>
+	<description>Server EUREKA da Fintech ADA</description>
 	
 	<properties>
         <maven.compiler.source>17</maven.compiler.source>
