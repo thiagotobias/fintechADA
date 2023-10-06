@@ -46,26 +46,58 @@ public class PessoaParser {
         return pessoaJuridicaDTO;
     }
 
-    public static Pessoa toPessoaEntity(PessoaDTO pessoaDTO) {
-        Pessoa pessoa;
+	public static Pessoa toPessoaEntity(PessoaDTO pessoaDTO) {
 
-        // Dependendo de alguma lógica, determine se é PessoaFisica ou PessoaJuridica
-        if (pessoaDTO instanceof PessoaFisicaDTO) {
-            PessoaFisica pessoaFisica = new PessoaFisica();
-            pessoaFisica.setNome(pessoaDTO.getNome());
-            pessoaFisica.setEmail(pessoaDTO.getEmail());
-            // outros campos comuns para PessoaFisica
-            pessoa = pessoaFisica;
-        } else {
-            PessoaJuridica pessoaJuridica = new PessoaJuridica();
-            pessoaJuridica.setNome(pessoaDTO.getNome());
-            pessoaJuridica.setEmail(pessoaDTO.getEmail());
-            // outros campos comuns para PessoaJuridica
-            pessoa = pessoaJuridica;
-        }
+		// Dependendo de alguma lógica, determine se é PessoaFisica ou PessoaJuridica
+		if (pessoaDTO instanceof PessoaFisicaDTO) {
+			PessoaFisicaDTO pessoaFisicaDTO = (PessoaFisicaDTO) pessoaDTO;
 
-        return pessoa;
-    }
+			PessoaFisica pessoaFisica = new PessoaFisica();
+			pessoaFisica.setNome(pessoaFisicaDTO.getNome());
+			pessoaFisica.setEmail(pessoaFisicaDTO.getEmail());
+			pessoaFisica.setSite(pessoaFisicaDTO.getSite());
+			pessoaFisica.setRua(pessoaFisicaDTO.getRua());
+			pessoaFisica.setNumero(pessoaFisicaDTO.getNumero());
+			pessoaFisica.setComplemento(pessoaFisicaDTO.getComplemento());
+			pessoaFisica.setBairro(pessoaFisicaDTO.getBairro());
+			pessoaFisica.setCidade(pessoaFisicaDTO.getCidade());
+			pessoaFisica.setCep(pessoaFisicaDTO.getCep());
+			pessoaFisica.setEstado(pessoaFisicaDTO.getEstado());
+			pessoaFisica.setCpf(pessoaFisicaDTO.getCpf());
+			pessoaFisica.setRg(pessoaFisica.getRg());
+			pessoaFisica.setDataRg(pessoaFisicaDTO.getDataRg());
+			pessoaFisica.setOrgaoRg(pessoaFisicaDTO.getOrgaoRg());
+			pessoaFisica.setSexo(pessoaFisicaDTO.getSexo());
+			pessoaFisica.setRaca(pessoaFisicaDTO.getRaca());
+			pessoaFisica.setNaturalidade(pessoaFisicaDTO.getNaturalidade());
+			pessoaFisica.setNacionalidade(pessoaFisicaDTO.getNaturalidade());
+			pessoaFisica.setNomePai(pessoaFisicaDTO.getNomePai());
+			pessoaFisica.setNomeMae(pessoaFisicaDTO.getNomeMae());
+			// outros campos comuns para PessoaFisica
+			return pessoaFisica;
+		} else {
+			PessoaJuridicaDTO pessoaJuridicaDTO = (PessoaJuridicaDTO) pessoaDTO;
+
+			PessoaJuridica pessoaJuridica = new PessoaJuridica();
+			pessoaJuridica.setNome(pessoaJuridicaDTO.getNome());
+			pessoaJuridica.setEmail(pessoaJuridicaDTO.getEmail());
+			pessoaJuridica.setSite(pessoaJuridicaDTO.getSite());
+			pessoaJuridica.setRua(pessoaJuridicaDTO.getRua());
+			pessoaJuridica.setNumero(pessoaJuridicaDTO.getNumero());
+			pessoaJuridica.setComplemento(pessoaJuridicaDTO.getComplemento());
+			pessoaJuridica.setBairro(pessoaJuridicaDTO.getBairro());
+			pessoaJuridica.setCidade(pessoaJuridicaDTO.getCidade());
+			pessoaJuridica.setCep(pessoaJuridicaDTO.getCep());
+			pessoaJuridica.setEstado(pessoaJuridicaDTO.getEstado());
+			pessoaJuridica.setCnpj(pessoaJuridicaDTO.getCnpj());
+			pessoaJuridica.setInscricaoEstadual(pessoaJuridicaDTO.getInscricaoEstadual());
+			pessoaJuridica.setInscricaoMunicipal(pessoaJuridicaDTO.getInscricaoMunicipal());
+			pessoaJuridica.setNomeFantasia(pessoaJuridicaDTO.getNomeFantasia());
+			// outros campos comuns para PessoaJuridica
+			return pessoaJuridica;
+		}
+
+	}
 
 
    
