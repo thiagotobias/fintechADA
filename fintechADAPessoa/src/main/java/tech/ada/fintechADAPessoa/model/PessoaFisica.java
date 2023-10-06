@@ -1,6 +1,6 @@
 package tech.ada.fintechADAPessoa.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -14,7 +14,7 @@ import lombok.Setter;
 public class PessoaFisica extends Pessoa {
     private String cpf;
     private String rg;
-    private LocalDateTime dataRg;
+    private LocalDate dataRg;
     private String orgaoRg;
     private String sexo;
     private String raca;

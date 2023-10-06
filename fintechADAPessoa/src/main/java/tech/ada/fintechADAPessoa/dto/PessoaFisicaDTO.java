@@ -1,6 +1,6 @@
 package tech.ada.fintechADAPessoa.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import lombok.Setter;
 public class PessoaFisicaDTO extends PessoaDTO {
     private String cpf;
     private String rg;
-    private LocalDateTime dataRg;
+    private LocalDate dataRg;
     private String orgaoRg;
     private String sexo;
     private String raca;
