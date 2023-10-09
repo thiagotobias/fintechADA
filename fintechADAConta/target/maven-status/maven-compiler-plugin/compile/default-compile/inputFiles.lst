@@ -1,0 +1,13 @@
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\dto\ContaDTO.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\FintechAdaContaApplication.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\repository\ContaRepository.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\service\ContaService.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\dto\parse\ContaParser.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\dto\ContaFisicaDTO.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\controller\ContaController.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\model\ContaFisica.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\service\impl\ContaServiceImpl.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\enums\TipoConta.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\model\Conta.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\model\ContaJuridica.java
+C:\Users\claudio.rodrigues\Downloads\ADA\fintechADA-feature-0.0\fintechADA-feature-0.0\fintechADAConta\src\main\java\tech\ada\fintechADAConta\dto\ContaJuridicaDTO.java
