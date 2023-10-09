@@ -19,6 +19,7 @@
 	<modules>
         <module>fintechADAServer</module>
         <module>fintechADAPessoa</module>
+	<module>fintechADAConta</module>
     </modules>
 	
 	<properties>
