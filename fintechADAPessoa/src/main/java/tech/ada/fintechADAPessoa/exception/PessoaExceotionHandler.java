@@ -15,7 +15,7 @@ public class PessoaExceotionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(PessoaException.class)
     public ResponseEntity<Object> handleEventNotFound(PessoaException exception, WebRequest request) {
 
-        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.PRECONDITION_FAILED, exception.getMessage());
         return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
     }
 
