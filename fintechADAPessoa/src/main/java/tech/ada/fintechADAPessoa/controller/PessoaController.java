@@ -25,18 +25,14 @@ public class PessoaController {
 	@Autowired
 	private PessoaService service;
 
-    @PostMapping
-    public ResponseEntity<PessoaDTO> create(@Valid @RequestBody PessoaDTO pessoa) {
-    	PessoaDTO createdPessoa = service.create(pessoa);
+	@PostMapping
+	public ResponseEntity<PessoaDTO> create(@Valid @RequestBody PessoaDTO pessoa) {
+		PessoaDTO createdPessoa = service.create(pessoa);
 
-        URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(createdPessoa.getId())
-                .toUri();
-
-        return ResponseEntity.created(uri).body(createdPessoa);
-    }
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdPessoa.getId())
+				.toUri();
+		return ResponseEntity.created(uri).build();
+	}
 
     @GetMapping("/{id}")
     public ResponseEntity<PessoaDTO> get(@PathVariable(name = "id") Long id) {
