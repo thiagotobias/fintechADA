@@ -19,7 +19,7 @@
 	<modules>
         <module>fintechADAServer</module>
         <module>fintechADAPessoa</module>
-	<module>fintechADAConta</module>
+		<module>fintechADAConta</module>
     </modules>
 	
 	<properties>
@@ -31,6 +31,21 @@
         
 	<dependencyManagement>
         <dependencies>
+			<dependency>
+                <groupId>tech.ada</groupId>
+                <artifactId>fintechADAConta</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.ada</groupId>
+                <artifactId>fintechADAPessoa</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.ada</groupId>
+                <artifactId>fintechADAServer</artifactId>
+                <version>1.0.0</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>

@@ -3,8 +3,10 @@ package tech.ada.fintechADAConta.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import tech.ada.fintechADAConta.model.Conta;
+import tech.ada.fintechADAConta.model.PessoaReplica;
 
 @Repository
-public interface ContaRepository extends JpaRepository<Conta, Long> {
+public interface PessoaReplicaRepository extends JpaRepository<PessoaReplica, Long> {
+
 }
+

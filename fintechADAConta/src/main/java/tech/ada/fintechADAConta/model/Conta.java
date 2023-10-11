@@ -1,13 +1,17 @@
 package tech.ada.fintechADAConta.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
-import tech.ada.fintechADAConta.enums.TipoCambio;
 import tech.ada.fintechADAConta.enums.TipoConta;
-import tech.ada.fintechADAConta.enums.TipoTransacao;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -18,8 +22,10 @@ public class Conta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long idPessoa;
-
+    @ManyToOne
+    @JoinColumn(name = "idPessoa", nullable = false)
+    private PessoaReplica pessoa;
+    
     @Column(unique = true)
     private String numeroConta;
 

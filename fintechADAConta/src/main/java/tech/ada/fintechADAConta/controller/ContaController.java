@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+import tech.ada.fintechADAConta.dto.ContaCreateDTO;
 import tech.ada.fintechADAConta.dto.ContaDTO;
 import tech.ada.fintechADAConta.dto.TransacaoDTO;
 import tech.ada.fintechADAConta.enums.TipoConta;
@@ -25,7 +26,7 @@ public class ContaController {
     private ContaService contaService;
 
     @PostMapping
-    public ResponseEntity<ContaDTO> create(@Valid @RequestBody ContaDTO contaDTO) {
+    public ResponseEntity<ContaDTO> create(@Valid @RequestBody ContaCreateDTO contaDTO) {
         Long idPessoa = contaDTO.getIdPessoa();
         TipoConta tipoConta = contaDTO.getTipo();
 

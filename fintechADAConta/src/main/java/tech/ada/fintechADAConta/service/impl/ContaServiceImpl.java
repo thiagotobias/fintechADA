@@ -1,31 +1,41 @@
 package tech.ada.fintechADAConta.service.impl;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.persistence.EntityNotFoundException;
 import tech.ada.fintechADAConta.dto.ContaDTO;
+import tech.ada.fintechADAConta.dto.PessoaDTO;
 import tech.ada.fintechADAConta.dto.TransacaoDTO;
 import tech.ada.fintechADAConta.enums.TipoCambio;
 import tech.ada.fintechADAConta.enums.TipoConta;
 import tech.ada.fintechADAConta.enums.TipoTransacao;
 import tech.ada.fintechADAConta.exception.ContaException;
 import tech.ada.fintechADAConta.model.Conta;
+import tech.ada.fintechADAConta.model.PessoaReplica;
 import tech.ada.fintechADAConta.model.Transacao;
 import tech.ada.fintechADAConta.repository.ContaRepository;
+import tech.ada.fintechADAConta.repository.PessoaReplicaRepository;
 import tech.ada.fintechADAConta.repository.TransacaoRepository;
 import tech.ada.fintechADAConta.service.ContaService;
-
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class ContaServiceImpl implements ContaService {
 
 	@Autowired
 	private ContaRepository contaRepository;
+	
+	@Autowired
+	private PessoaReplicaRepository pessoaRepository;
 
 	@Autowired
 	private TransacaoRepository transacaoRepository;
@@ -34,6 +44,7 @@ public class ContaServiceImpl implements ContaService {
 
 	@Override
 	public ContaDTO create(Long idPessoa, TipoConta tipoConta) {
+		PessoaReplica pessoa = pessoaRepository.findById(idPessoa).orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada com o ID: " + idPessoa));
 		Conta conta = new Conta();
 		String numeroConta = generateNumeroConta();
 
@@ -41,13 +52,18 @@ public class ContaServiceImpl implements ContaService {
 		conta.setSaldoEmReal(0.0);
 		conta.setSaldoEmDolar(0.0);
 		conta.setTipo(tipoConta);
-		conta.setIdPessoa(idPessoa);
+		conta.setPessoa(pessoa);
 
 		conta = contaRepository.save(conta);
 
 		ContaDTO contaDTO = new ContaDTO();
 		contaDTO.setId(conta.getId());
-		contaDTO.setIdPessoa(conta.getIdPessoa());
+		PessoaDTO pessoaDTO = new PessoaDTO();
+		pessoaDTO.setCnpj(conta.getPessoa().getCnpj());
+		pessoaDTO.setCpf(conta.getPessoa().getCpf());
+		pessoaDTO.setId(conta.getPessoa().getId());
+		pessoaDTO.setNome(conta.getPessoa().getNome());
+		contaDTO.setPessoa(pessoaDTO);
 		contaDTO.setNumeroConta(conta.getNumeroConta());
 		contaDTO.setSaldoEmReal(conta.getSaldoEmReal());
 		contaDTO.setSaldoEmDolar(conta.getSaldoEmDolar());
@@ -66,15 +82,31 @@ public class ContaServiceImpl implements ContaService {
 
 	@Override
 	public List<ContaDTO> findAllByPessoaId(Long idPessoa) {
-		List<Conta> contas = contaRepository.findAllByIdPessoa(idPessoa);
-
-		if (contas.isEmpty()) {
+		Optional<PessoaReplica> pessoa = pessoaRepository.findById(idPessoa);
+		
+		if (pessoa.get().getContas().isEmpty()) {
 			throw new ContaException("Conta não encontrada com o ID Pessoa: " + idPessoa);
 		}
+		
+		List<ContaDTO> contas = new ArrayList<>(pessoa.get().getContas().size());
+		PessoaDTO pessoaDto = new PessoaDTO();
+		pessoaDto.setId(pessoa.get().getId());
+		pessoaDto.setNome(pessoa.get().getNome());
+		pessoaDto.setCpf(pessoa.get().getCpf());
+		pessoaDto.setCnpj(pessoa.get().getCnpj());
+		for (Conta conta : pessoa.get().getContas()) {
+			ContaDTO contaDto = new ContaDTO();
+			contaDto.setId(conta.getId());
+			contaDto.setNumeroConta(conta.getNumeroConta());
+			
+			contaDto.setPessoa(pessoaDto);
+			contaDto.setSaldoEmDolar(conta.getSaldoEmDolar());
+			contaDto.setSaldoEmReal(conta.getSaldoEmReal());
+			contaDto.setTipo(conta.getTipo());
+			contas.add(contaDto);
+		}
 
-		return contas.stream()
-				.map(this::convertToContaDTO)
-				.collect(Collectors.toList());
+		return contas;
 	}
 
 	@Override
@@ -234,14 +266,19 @@ public class ContaServiceImpl implements ContaService {
 	private ContaDTO convertToContaDTO(Conta conta) {
 		ContaDTO contaDTO = new ContaDTO();
 		contaDTO.setId(conta.getId());
-		contaDTO.setIdPessoa(conta.getIdPessoa());
+		PessoaDTO pessoaDTO = new PessoaDTO();
+		pessoaDTO.setId(conta.getPessoa().getId());
+		pessoaDTO.setNome(conta.getPessoa().getNome());
+		pessoaDTO.setCnpj(conta.getPessoa().getCnpj());
+		pessoaDTO.setCpf(conta.getPessoa().getCpf());
+		contaDTO.setPessoa(pessoaDTO);
 		contaDTO.setNumeroConta(conta.getNumeroConta());
 		contaDTO.setSaldoEmReal(conta.getSaldoEmReal());
 		contaDTO.setSaldoEmDolar(conta.getSaldoEmDolar());
 		contaDTO.setTipo(conta.getTipo());
 		return contaDTO;
 	}
-
+	
 	private TransacaoDTO convertToTransacaoDTO(Transacao transacao) {
 		TransacaoDTO transacaoDTO = new TransacaoDTO();
 		transacaoDTO.setId(transacao.getId());
