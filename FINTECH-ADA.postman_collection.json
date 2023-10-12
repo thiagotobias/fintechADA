@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "54fea5d8-dc45-43cc-ab72-e6be6d401a8f",
+		"name": "FINTECH-ADA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "8463690",
+		"_collection_link": "https://solar-sunset-598535.postman.co/workspace/FINTECH-ADA~d759c647-ff22-4141-8c26-b2c26d09eb2a/collection/8463690-54fea5d8-dc45-43cc-ab72-e6be6d401a8f?action=share&source=collection_link&creator=8463690"
+	},
+	"item": [
+		{
+			"name": "PESSOA",
+			"item": [
+				{
+					"name": "SAVE-PF",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Kaique\",\r\n    \"email\": \"nat.com@hotmail.com\",\r\n    \"site\": \"kaique.com.br\",\r\n    \"rua\": \"Av. dos Constanstinos\",\r\n    \"numero\": \"31\",\r\n    \"complemento\": \"APARTAMENTO 4 BLO 3\",\r\n    \"bairro\": \"JD Marieta\",\r\n    \"cidade\": \"São Roque\",\r\n    \"cep\": \"13323-321\",\r\n    \"estado\": \"SP\",\r\n    \"tipoPessoa\": \"FISICA\",\r\n    \"cpf\":\"123.423.231-32\",\r\n    \"rg\":\"32.321.321-2\",\r\n    \"dataRg\":\"2022-01-01\",\r\n    \"orgaoRg\":\"SSP\",\r\n    \"sexo\":\"M\",\r\n    \"raca\":\"Pardo\",\r\n    \"naturalidade\": \"Mairinque\",\r\n    \"nacionalidade\":\"Brasil\",\r\n    \"nomePai\":\"Everton Riveiro\",\r\n    \"nomeMae\": \"Bruna Marquezine\"\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8762/pessoas"
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE-JURIDICA",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Kaique\",\r\n    \"email\": \"nat.com@hotmail.com\",\r\n    \"site\": \"kaique.com.br\",\r\n    \"rua\": \"Av. dos Constanstinos\",\r\n    \"numero\": \"31\",\r\n    \"complemento\": \"APARTAMENTO 4 BLO 3\",\r\n    \"bairro\": \"JD Marieta\",\r\n    \"cidade\": \"São Roque\",\r\n    \"cep\": \"13323-321\",\r\n    \"estado\": \"SP\",\r\n    \"tipoPessoa\": \"JURIDICA\",\r\n\r\n    \"cnpj\":\"321.321.321-0001\",\r\n    \"inscricaoEstadual\":\"SP\",\r\n    \"inscricaoMunicipal\":\"N/A\",\r\n    \"nomeFantasia\": \"Mundo da fantasia\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8762/pessoas"
+					},
+					"response": []
+				},
+				{
+					"name": "Bucar Pessoa ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8762/pessoas/3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CONTA",
+			"item": [
+				{
+					"name": "Criar Conta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idPessoa\": 1, // ID do titular da conta\r\n    \"tipo\": \"JURIDICA\" // Tipo da conta (JURIDICA ou TITULAR)\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8763/contas"
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Detalhes da Conta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8763/contas/by-conta/:idConta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8763",
+							"path": [
+								"contas",
+								"by-conta",
+								":idConta"
+							],
+							"variable": [
+								{
+									"key": "idConta",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Contas da Pessoa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8763/contas/by-pessoa/:idPessoa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8763",
+							"path": [
+								"contas",
+								"by-pessoa",
+								":idPessoa"
+							],
+							"variable": [
+								{
+									"key": "idPessoa",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Transação Transferência",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contaOrigemId\": 1, // ID da conta de origem da transferência\r\n    \"contaDestinoId\": 2, // ID da conta de destino da transferência\r\n    \"valor\": 100.0, // Valor solicitado para a transferência\r\n    \"tipo\": \"TRANSFERENCIA\" // Tipo de transação (TRANSFERENCIA, EMPRESTIMO ou CAMBIO)\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8763/contas/transacao"
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Transação Empréstimo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contaDestinoId\": 1, // ID da conta de destino do empréstimo\r\n    \"valor\": 1000.0, // Valor solicitado para o empréstimo\r\n    \"tipo\": \"EMPRESTIMO\" // Tipo de transação (TRANSFERENCIA, EMPRESTIMO ou CAMBIO)\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8763/contas/transacao"
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Transação Compra Dólar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\r\n     \"contaOrigemId\": 1, // ID da conta de origem do câmbio\r\n     \"valor\": 5.0, // Valor solicitado para o câmbio\r\n     \"tipo\": \"CAMBIO\", // Tipo de transação (TRANSFERENCIA, EMPRESTIMO ou CAMBIO)\r\n     \"tipoCambio\": \"COMPRA_DOLAR\" // Tipo de câmbio (COMPRA_DOLAR, VENDA_DOLAR, COMPRA_REAL ou VENDA_REAL)\r\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8763/contas/transacao"
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Transação Venda Dólar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\r\n     \"contaOrigemId\": 1, // ID da conta de origem do câmbio\r\n     \"valor\": 5.0, // Valor solicitado para o câmbio\r\n     \"tipo\": \"CAMBIO\", // Tipo de transação (TRANSFERENCIA, EMPRESTIMO ou CAMBIO)\r\n     \"tipoCambio\": \"VENDA_DOLAR\" // Tipo de câmbio (COMPRA_DOLAR, VENDA_DOLAR, COMPRA_REAL ou VENDA_REAL)\r\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8763/contas/transacao"
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Transação Compra Real",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\r\n     \"contaOrigemId\": 1, // ID da conta de origem do câmbio\r\n     \"valor\": 5.0, // Valor solicitado para o câmbio\r\n     \"tipo\": \"CAMBIO\", // Tipo de transação (TRANSFERENCIA, EMPRESTIMO ou CAMBIO)\r\n     \"tipoCambio\": \"COMPRA_REAL\" // Tipo de câmbio (COMPRA_DOLAR, VENDA_DOLAR, COMPRA_REAL ou VENDA_REAL)\r\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8763/contas/transacao"
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Transação Venda Real",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\r\n     \"contaOrigemId\": 1, // ID da conta de origem do câmbio\r\n     \"valor\": 5.0, // Valor solicitado para o câmbio\r\n     \"tipo\": \"CAMBIO\", // Tipo de transação (TRANSFERENCIA, EMPRESTIMO ou CAMBIO)\r\n     \"tipoCambio\": \"VENDA_REAL\" // Tipo de câmbio (COMPRA_DOLAR, VENDA_DOLAR, COMPRA_REAL ou VENDA_REAL)\r\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8763/contas/transacao"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
